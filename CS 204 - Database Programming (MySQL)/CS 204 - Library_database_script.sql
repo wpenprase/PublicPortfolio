@@ -1,0 +1,492 @@
+-- CREATE DATABASE library_204;
+
+DROP TABLE IF EXISTS BORROWER;
+DROP TABLE IF EXISTS BOOK;
+DROP TABLE IF EXISTS CLIENT;
+DROP TABLE IF EXISTS AUTHOR;
+
+
+
+
+CREATE TABLE AUTHOR (
+	AuthorID INT AUTO_INCREMENT PRIMARY KEY,	
+	AuthorFirstName VARCHAR(15),	
+	AuthorLastName VARCHAR(15), 
+	AuthorNationality VARCHAR(15)  
+);
+
+CREATE TABLE BOOK (
+	BookID INT AUTO_INCREMENT PRIMARY KEY,	
+	BookTitle VARCHAR(100),	
+    Genre VARCHAR(30),
+    AuthorID INT,
+	FOREIGN KEY (AuthorID) REFERENCES AUTHOR(AuthorID)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+ CREATE TABLE CLIENT (
+	ClientID INT AUTO_INCREMENT PRIMARY KEY,
+	ClientFirstName VARCHAR(30),	
+	ClientLastName VARCHAR(30),
+	ClientDoB INT, 
+	Occupation VARCHAR(50)
+);
+
+CREATE TABLE BORROWER (
+	BorrowID INT PRIMARY KEY,
+	ClientID INT,
+	BookID INT,
+	BorrowDate DATE,
+	FOREIGN KEY (ClientID) REFERENCES CLIENT(ClientID)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+        ,
+	FOREIGN KEY (BookID) REFERENCES BOOK(BookID)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('1', 'Sofia', 'Smith', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('2', 'Maria', 'Brown', 'Brazil');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('3', 'Elena', 'Martin', 'Mexico');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('4', 'Zoe', 'Roy', 'France');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('5', 'Sebastian', 'Lavoie', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('6', 'Dylan', 'Garcia', 'Spain');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('7', 'Ian', 'Cruz', 'Mexico');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('8', 'Lucas', 'Smith', 'USA');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('9', 'Fabian', 'Wilson', 'USA');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('10', 'Liam', 'Taylor', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('11', 'William', 'Thomas', 'Great Britain');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('12', 'Logan', 'Moore', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('13', 'Oliver', 'Martin', 'France');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('14', 'Alysha', 'Thompson', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('15', 'Isabelle', 'Lee', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('16', 'Emily', 'Clark', 'USA');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('17', 'John', 'Young', 'China');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('18', 'David', 'Wright', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('19', 'Thomas', 'Scott', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('20', 'Helena', 'Adams', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('21', 'Sofia', 'Carter', 'USA');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('22', 'Liam', 'Parker', 'Canada');
+INSERT INTO AUTHOR (AuthorID, AuthorFirstName, AuthorLastName, AuthorNationality) VALUES	('23', 'Emily', 'Murphy', 'USA');
+
+
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('1', 'Build your database system', '1', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('2', 'The red wall', '2', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('3', 'The perfect match', '3', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('4', 'Digital Logic', '4', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('5', 'How to be a great lawyer', '5', 'Law');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('6', 'Manage successful negotiations', '6', 'Society');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('7', 'Pollution today', '7', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('8', 'A gray park', '2', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('9', 'How to be rich in one year', '8', 'Humor');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('10', 'Their bright fate', '9', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('11', 'Black lines', '10', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('12', 'History of theater', '11', 'Literature');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('13', 'Electrical transformers', '12', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('14', 'Build your big data system', '1', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('15', 'Right and left', '13', 'Children');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('16', 'Programming using Python', '1', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('17', 'Computer networks', '14', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('18', 'Performance evaluation', '15', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('19', 'Daily exercise', '16', 'Well being');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('20', 'The silver uniform', '17', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('21', 'Industrial revolution', '18', 'History');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('22', 'Green nature', '19', 'Well being');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('23', 'Perfect football', '20', 'Well being');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('24', 'The chocolate love', '21', 'Humor');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('25', 'Director and leader', '22', 'Society');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('26', 'Play football every week', '20', 'well being');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('27', 'Maya the bee', '13', 'Children');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('28', 'Perfect rugby', '20', 'Well being');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('29', 'The end', '23', 'Fiction');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('30', 'Computer security', '1', 'Science');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('31', 'Participate', '22', 'Society');
+INSERT INTO BOOK (BookID, BookTitle, AuthorID, Genre) VALUES	('32', 'Positive figures', '3', 'Fiction');
+
+
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('1', 'Kaiden', 'Hill', '2006', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('2', 'Alina', 'Morton', '2010', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('3', 'Fania', 'Brooks', '1983', 'Food Scientist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('4', 'Courtney', 'Jensen', '2006', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('5', 'Brittany', 'Hill', '1983', 'Firefighter');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('6', 'Max', 'Rogers', '2005', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('7', 'Margaret', 'McCarthy', '1981', 'School Psychologist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('8', 'Julie', 'McCarthy', '1973', 'Professor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('9', 'Ken', 'McCarthy', '1974', 'Securities Clerk');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('10', 'Britany', "'O'Quinn'", '1984', 'Violinist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('11', 'Conner', 'Gardner', '1998', 'Licensed Massage Therapist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('12', 'Mya', 'Austin', '1960', 'Parquet Floor Layer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('13', 'Thierry', 'Rogers', '2004', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('14', 'Eloise', 'Rogers', '1984', 'Computer Security Manager');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('15', 'Gerard', 'Jackson', '1979', 'Oil Exploration Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('16', 'Randy', 'Day', '1986', 'Aircraft Electrician');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('17', 'Jodie', 'Page', '1990', 'Manufacturing Director');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('18', 'Coral', 'Rice', '1996', 'Window Washer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('19', 'Ayman', 'Austin', '2002', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('20', 'Jaxson', 'Austin', '1999', 'Repair Worker');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('21', 'Joel', 'Austin', '1973', 'Police Officer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('22', 'Alina', 'Austin', '2010', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('23', 'Elin', 'Austin', '1962', 'Payroll Clerk');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('24', 'Ophelia', 'Wolf', '2004', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('25', 'Eliot', 'McGuire', '1967', 'Dentist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('26', 'Peter', 'McKinney', '1968', 'Professor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('27', 'Annabella', 'Henry', '1974', 'Nurse');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('28', 'Anastasia', 'Baker', '2001', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('29', 'Tyler', 'Baker', '1984', 'Police Officer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('30', 'Lilian', 'Ross', '1983', 'Insurance Agent');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('31', 'Thierry', 'Arnold', '1975', 'Bus Driver');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('32', 'Angelina', 'Rowe', '1979', 'Firefighter');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('33', 'Marcia', 'Rowe', '1974', 'Health Educator');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('34', 'Martin', 'Rowe', '1976', 'Ship Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('35', 'Adeline', 'Rowe', '2005', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('36', 'Colette', 'Rowe', '1963', 'Professor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('37', 'Diane', 'Clark', '1975', 'Payroll Clerk');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('38', 'Caroline', 'Clark', '1960', 'Dentist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('39', 'Dalton', 'Clayton', '1982', 'Police Officer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('40', 'Steve', 'Clayton', '1990', 'Bus Driver');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('41', 'Melanie', 'Clayton', '1987', 'Computer Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('42', 'Alana', 'Wilson', '2007', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('43', 'Carson', 'Byrne', '1995', 'Food Scientist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('44', 'Conrad', 'Byrne', '2007', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('45', 'Ryan', 'Porter', '2008', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('46', 'Elin', 'Porter', '1978', 'Computer Programmer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('47', 'Tyler', 'Harvey', '2007', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('48', 'Arya', 'Harvey', '2008', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('49', 'Serena', 'Harvey', '1978', 'School Teacher');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('50', 'Lilly', 'Franklin', '1976', 'Doctor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('51', 'Mai', 'Franklin', '1994', 'Dentist');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('52', 'John', 'Franklin', '1999', 'Firefighter');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('53', 'Judy', 'Franklin', '1995', 'Firefighter');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('54', 'Katy', 'Lloyd', '1992', 'School Teacher');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('55', 'Tamara', 'Allen', '1963', 'Ship Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('56', 'Maxim', 'Lyons', '1985', 'Police Officer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('57', 'Allan', 'Lyons', '1983', 'Computer Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('58', 'Marc', 'Harris', '1980', 'School Teacher');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('59', 'Elin', 'Young', '2009', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('60', 'Diana', 'Young', '2008', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('61', 'Diane', 'Young', '2006', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('62', 'Alana', 'Bird', '2003', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('63', 'Anna', 'Becker', '1979', 'Security Agent');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('64', 'Katie', 'Grant', '1977', 'Manager');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('65', 'Joan', 'Grant', '2010', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('66', 'Bryan', 'Bell', '2001', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('67', 'Belle', 'Miller', '1970', 'Professor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('68', 'Peggy', 'Stevens', '1990', 'Bus Driver');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('69', 'Steve', 'Williamson', '1975', 'HR Clerk');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('70', 'Tyler', 'Williamson', '1999', 'Doctor');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('71', 'Izabelle', 'Williamson', '1990', 'Systems Analyst');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('72', 'Annabel', 'Williamson', '1960', 'Cashier');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('73', 'Mohamed', 'Waters', '1966', 'Insurance Agent');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('74', 'Marion', 'Newman', '1970', 'Computer Programmer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('75', 'Ada', 'Williams', '1986', 'Computer Programmer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('76', 'Sean', 'Scott', '1983', 'Bus Driver');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('77', 'Farrah', 'Scott', '1974', 'Ship Engineer');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('78', 'Christine', 'Lambert', '1973', 'School Teacher');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('79', 'Alysha', 'Lambert', '2007', 'Student');
+INSERT INTO CLIENT (ClientID, ClientFirstName, ClientLastName, ClientDoB, Occupation) VALUES	('80', 'Maia', 'Grant', '1984', 'School Teacher');
+
+
+
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('1', '35', '17', '2016-07-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('2', '1', '3', '2017-04-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('3', '42', '8', '2016-10-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('4', '62', '16', '2016-04-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('5', '53', '13', '2017-01-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('6', '33', '15', '2015-11-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('7', '40', '14', '2015-01-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('8', '64', '2', '2017-09-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('9', '56', '30', '2017-08-02');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('10', '23', '2', '2018-06-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('11', '46', '19', '2015-11-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('12', '61', '20', '2015-11-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('13', '58', '7', '2017-06-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('14', '46', '16', '2017-02-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('15', '80', '21', '2018-03-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('16', '51', '23', '2015-09-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('17', '49', '18', '2015-07-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('18', '43', '18', '2015-11-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('19', '30', '2', '2018-08-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('20', '48', '24', '2015-05-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('21', '71', '5', '2016-09-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('22', '35', '3', '2016-07-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('23', '57', '1', '2015-03-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('24', '23', '25', '2017-08-16');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('25', '20', '12', '2018-07-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('26', '25', '7', '2015-01-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('27', '72', '29', '2016-04-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('28', '74', '20', '2017-07-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('29', '53', '14', '2016-02-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('30', '32', '10', '2017-07-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('31', '12', '15', '2018-04-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('32', '77', '13', '2017-06-09');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('33', '30', '4', '2017-10-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('34', '37', '24', '2016-01-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('35', '27', '26', '2017-06-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('36', '1', '16', '2018-05-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('37', '21', '9', '2016-03-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('38', '69', '28', '2017-03-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('39', '17', '19', '2017-03-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('40', '8', '9', '2016-04-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('41', '63', '18', '2015-01-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('42', '65', '20', '2016-10-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('43', '51', '19', '2015-07-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('44', '23', '12', '2017-01-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('45', '17', '4', '2017-04-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('46', '68', '5', '2016-09-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('47', '46', '13', '2017-09-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('48', '15', '13', '2017-07-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('49', '11', '19', '2017-12-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('50', '78', '15', '2017-01-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('51', '47', '9', '2015-03-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('52', '68', '7', '2016-05-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('53', '37', '26', '2017-02-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('54', '48', '27', '2015-12-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('55', '9', '21', '2017-10-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('56', '29', '8', '2018-04-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('57', '64', '18', '2017-08-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('58', '61', '26', '2018-02-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('59', '39', '28', '2016-07-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('60', '73', '18', '2018-08-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('61', '11', '13', '2018-01-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('62', '45', '6', '2016-07-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('63', '33', '13', '2018-03-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('64', '10', '17', '2016-06-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('65', '28', '18', '2017-02-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('66', '51', '3', '2016-12-09');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('67', '29', '2', '2015-09-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('68', '28', '30', '2017-09-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('69', '74', '20', '2015-12-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('70', '15', '22', '2015-01-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('71', '57', '8', '2017-08-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('72', '2', '5', '2015-01-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('73', '74', '12', '2018-04-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('74', '51', '10', '2016-02-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('75', '25', '17', '2015-02-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('76', '45', '21', '2017-02-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('77', '27', '25', '2016-08-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('78', '32', '28', '2016-06-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('79', '71', '21', '2017-05-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('80', '75', '26', '2016-05-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('81', '56', '32', '2015-12-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('82', '26', '32', '2015-05-16');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('83', '66', '32', '2015-05-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('84', '57', '18', '2017-09-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('85', '40', '15', '2016-09-02');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('86', '65', '4', '2017-08-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('87', '54', '7', '2015-12-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('88', '29', '4', '2017-07-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('89', '44', '9', '2017-12-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('90', '56', '31', '2015-06-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('91', '17', '4', '2015-04-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('92', '35', '16', '2018-07-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('93', '22', '18', '2017-06-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('94', '39', '24', '2015-05-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('95', '63', '14', '2018-01-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('96', '53', '21', '2016-07-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('97', '40', '9', '2016-07-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('98', '52', '4', '2017-04-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('99', '27', '20', '2016-09-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('100', '72', '29', '2015-12-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('101', '49', '16', '2017-12-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('102', '6', '12', '2016-12-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('103', '74', '31', '2016-07-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('104', '48', '32', '2016-06-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('105', '69', '2', '2016-12-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('106', '60', '32', '2017-10-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('107', '45', '22', '2017-06-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('108', '42', '15', '2017-05-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('109', '79', '8', '2016-10-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('110', '70', '18', '2016-12-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('111', '34', '8', '2016-03-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('112', '43', '8', '2015-12-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('113', '42', '32', '2016-04-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('114', '67', '5', '2017-03-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('115', '80', '25', '2015-06-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('116', '54', '11', '2017-05-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('117', '34', '28', '2017-08-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('118', '65', '20', '2017-08-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('119', '61', '19', '2018-01-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('120', '38', '12', '2018-01-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('121', '51', '4', '2016-05-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('122', '7', '16', '2016-03-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('123', '46', '16', '2016-11-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('124', '75', '30', '2018-08-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('125', '72', '32', '2015-03-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('126', '44', '17', '2015-06-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('127', '68', '15', '2016-02-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('128', '21', '1', '2016-06-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('129', '14', '25', '2016-10-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('130', '68', '21', '2016-05-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('131', '35', '20', '2015-03-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('132', '16', '27', '2016-08-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('133', '79', '31', '2018-03-07');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('134', '14', '17', '2018-04-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('135', '29', '28', '2018-03-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('136', '41', '4', '2018-08-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('137', '42', '3', '2016-02-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('138', '45', '3', '2017-07-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('139', '36', '16', '2018-07-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('140', '36', '30', '2015-08-07');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('141', '54', '32', '2018-03-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('142', '61', '15', '2017-03-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('143', '1', '13', '2018-05-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('144', '43', '1', '2015-05-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('145', '37', '14', '2015-07-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('146', '62', '17', '2015-09-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('147', '50', '22', '2016-12-02');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('148', '45', '1', '2016-07-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('149', '32', '17', '2018-03-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('150', '13', '28', '2016-02-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('151', '15', '9', '2018-08-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('152', '10', '19', '2018-08-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('153', '66', '3', '2016-11-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('154', '68', '29', '2017-07-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('155', '21', '14', '2018-06-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('156', '35', '9', '2016-01-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('157', '17', '24', '2016-08-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('158', '40', '21', '2015-07-09');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('159', '1', '24', '2016-03-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('160', '70', '27', '2015-07-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('161', '80', '26', '2016-04-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('162', '29', '5', '2015-10-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('163', '76', '12', '2018-04-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('164', '22', '4', '2016-12-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('165', '2', '2', '2017-10-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('166', '35', '13', '2016-02-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('167', '40', '8', '2017-10-02');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('168', '68', '9', '2016-01-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('169', '32', '5', '2016-11-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('170', '34', '17', '2016-09-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('171', '34', '16', '2018-04-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('172', '80', '30', '2016-10-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('173', '20', '32', '2015-11-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('174', '36', '10', '2017-09-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('175', '78', '12', '2018-06-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('176', '57', '8', '2016-03-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('177', '75', '11', '2017-06-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('178', '71', '10', '2015-08-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('179', '48', '22', '2015-09-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('180', '19', '16', '2016-02-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('181', '79', '30', '2018-08-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('182', '70', '13', '2016-09-16');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('183', '30', '6', '2017-02-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('184', '45', '12', '2017-10-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('185', '30', '27', '2016-11-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('186', '26', '3', '2016-08-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('187', '66', '6', '2017-01-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('188', '47', '15', '2016-02-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('189', '53', '30', '2018-08-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('190', '80', '16', '2016-03-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('191', '70', '13', '2018-02-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('192', '14', '25', '2016-03-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('193', '46', '22', '2016-01-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('194', '30', '32', '2015-08-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('195', '60', '14', '2016-11-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('196', '14', '13', '2018-05-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('197', '71', '15', '2016-06-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('198', '38', '21', '2015-12-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('199', '69', '30', '2017-04-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('200', '49', '31', '2018-06-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('201', '28', '28', '2015-05-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('202', '49', '3', '2016-08-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('203', '75', '1', '2015-10-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('204', '78', '3', '2017-05-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('205', '43', '18', '2015-03-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('206', '27', '21', '2016-02-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('207', '64', '22', '2015-04-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('208', '21', '11', '2017-12-09');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('209', '66', '29', '2016-12-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('210', '45', '13', '2017-04-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('211', '48', '30', '2015-01-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('212', '20', '25', '2017-12-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('213', '41', '20', '2018-01-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('214', '51', '12', '2015-07-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('215', '5', '1', '2015-04-12');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('216', '40', '3', '2018-02-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('217', '79', '4', '2018-06-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('218', '15', '10', '2016-11-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('219', '42', '22', '2016-12-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('220', '17', '9', '2018-01-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('221', '38', '13', '2016-05-09');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('222', '79', '2', '2017-12-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('223', '74', '3', '2015-12-07');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('224', '46', '8', '2016-06-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('225', '78', '22', '2018-08-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('226', '45', '2', '2015-04-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('227', '72', '31', '2015-11-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('228', '18', '17', '2015-03-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('229', '29', '3', '2017-08-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('230', '66', '11', '2018-06-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('231', '36', '16', '2016-04-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('232', '26', '2', '2016-10-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('233', '32', '1', '2017-10-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('234', '62', '14', '2017-07-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('235', '12', '4', '2015-07-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('236', '38', '32', '2015-02-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('237', '29', '16', '2016-07-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('238', '36', '25', '2017-05-07');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('239', '76', '7', '2015-06-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('240', '28', '16', '2016-08-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('241', '60', '13', '2016-08-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('242', '8', '3', '2017-07-28');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('243', '25', '1', '2016-07-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('244', '62', '29', '2018-08-24');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('245', '51', '8', '2016-09-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('246', '27', '23', '2015-02-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('247', '69', '12', '2018-06-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('248', '51', '12', '2015-07-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('249', '7', '4', '2015-05-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('250', '31', '15', '2017-10-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('251', '14', '23', '2015-01-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('252', '14', '1', '2018-05-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('253', '39', '25', '2015-12-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('254', '79', '24', '2016-05-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('255', '40', '15', '2016-03-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('256', '51', '13', '2018-04-13');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('257', '61', '1', '2015-02-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('258', '15', '24', '2018-03-02');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('259', '10', '22', '2018-01-21');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('260', '67', '10', '2017-07-08');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('261', '79', '11', '2016-12-11');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('262', '19', '32', '2016-05-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('263', '35', '11', '2017-08-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('264', '27', '13', '2017-12-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('265', '30', '22', '2015-12-22');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('266', '8', '7', '2015-06-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('267', '70', '9', '2016-03-20');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('268', '56', '18', '2016-01-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('269', '13', '19', '2015-03-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('270', '61', '2', '2016-06-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('271', '47', '13', '2017-09-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('272', '30', '22', '2016-02-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('273', '18', '22', '2016-12-31');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('274', '34', '29', '2017-10-27');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('275', '32', '21', '2015-06-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('276', '9', '28', '2016-03-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('277', '62', '24', '2015-03-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('278', '44', '22', '2017-04-29');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('279', '27', '5', '2015-03-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('280', '61', '28', '2017-07-14');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('281', '5', '13', '2016-12-04');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('282', '43', '19', '2018-03-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('283', '34', '19', '2016-06-05');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('284', '35', '5', '2018-02-19');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('285', '13', '12', '2016-09-23');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('286', '74', '18', '2016-12-26');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('287', '70', '31', '2017-08-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('288', '42', '17', '2016-06-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('289', '51', '24', '2018-07-30');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('290', '45', '30', '2015-01-15');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('291', '70', '17', '2017-10-07');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('292', '77', '7', '2017-01-06');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('293', '74', '25', '2015-09-25');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('294', '47', '14', '2018-02-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('295', '10', '2', '2017-04-18');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('296', '16', '21', '2016-10-03');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('297', '48', '5', '2016-09-17');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('298', '72', '3', '2017-02-10');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('299', '26', '23', '2016-03-01');
+INSERT INTO BORROWER (BorrowID, ClientID, BookID, BorrowDate) VALUES	('300', '49', '23', '2016-10-25');
+
